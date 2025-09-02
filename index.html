@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Adedeji — Embedded, Web & IoT Engineer</title>
+  <meta name="description" content="Portfolio: Software Engineering, Microembedded Systems, Web Development, IoT" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b1220; --card: #071029; --muted: #9aa6b2; --accent: #7c3aed; --glass: rgba(255,255,255,0.03);
+      --maxw: 1100px; --radius: 14px; --glass-2: rgba(255,255,255,0.02);
+    }
+    *{box-sizing:border-box}
+    html { scroll-behavior: smooth; }
+    body{
+      margin:0; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color: #e6eef8; background: linear-gradient(180deg,var(--bg), #041022);
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* layout */
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4f46e5);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:white;box-shadow:0 10px 30px rgba(124,58,237,0.18)}
+    .title{font-weight:700}
+    .subtitle{color:var(--muted);font-size:13px}
+
+    nav{display:flex;align-items:center;gap:16px}
+    .nav-links{display:flex;gap:12px;list-style:none;padding:0;margin:0}
+    .nav-links a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600}
+    .nav-links a.active{background:linear-gradient(90deg,var(--accent),#5b21b6);color:white;box-shadow:0 8px 20px rgba(92,41,192,0.14)}
+
+    .hamburger{display:none;font-size:22px;cursor:pointer;padding:8px}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;margin-top:28px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:var(--radius);box-shadow:0 10px 40px rgba(0,0,0,0.6)}
+    .hero h1{font-size:34px;margin:0 0 10px}
+    .hero p{color:var(--muted);line-height:1.6}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .chip{background:var(--glass);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:700;font-size:13px}
+
+    /* profile */
+    .profile{background:var(--card);padding:18px;border-radius:12px}
+    .profile img{width:100%;border-radius:10px;display:block}
+    .stats{display:flex;gap:8px;justify-content:space-between;margin-top:12px}
+    .stat{flex:1;text-align:center}
+    .stat b{display:block;font-size:18px}
+
+    /* sections */
+    section.content{margin-top:32px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:linear-gradient(180deg,var(--glass-2), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+    .card h3{margin:0 0 8px}
+    .card p{color:var(--muted);font-size:14px}
+    .section-hero{display:flex;gap:20px;align-items:center}
+    .section-hero img{max-width:420px;width:100%;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+
+    /* projects / highlights */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .project{overflow:hidden;border-radius:12px;background:linear-gradient(180deg,#06122422,#06122411)}
+    .project img{width:100%;height:180px;object-fit:cover}
+    .meta{padding:12px}
+
+    /* contact */
+    .contact-card{max-width:720px;margin:0 auto;padding:20px;background:var(--card);border-radius:12px}
+    .contact-card form{display:grid;gap:12px}
+    input, textarea{padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:rgba(255,255,255,0.02);color:#e6eef8}
+    button.submit{padding:12px;border-radius:8px;border:none;background:linear-gradient(90deg,var(--accent),#5b21b6);color:white;font-weight:700;cursor:pointer}
+
+    footer{margin-top:36px;text-align:center;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:1100px){.hero{grid-template-columns:1fr 320px}} 
+    @media (max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}.projects{grid-template-columns:1fr}}
+    @media (max-width:720px){
+      .hero{grid-template-columns:1fr}
+      .nav-links{display:none;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:#061226;padding:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px}
+      .hamburger{display:block}
+    }
+
+    /* utility */
+    .center{display:flex;align-items:center;justify-content:center}
+    a.btn{display:inline-block;padding:10px 16px;border-radius:10px;background:rgba(255,255,255,0.03);color:white;text-decoration:none;font-weight:700}
+    a.btn.primary{background:linear-gradient(90deg,var(--accent),#5b21b6)}
+
+    /* active section underline for desktop */
+    .nav-links a::after{content:'';display:block;height:3px;background:transparent;border-radius:3px;margin-top:6px}
+    .nav-links a.active::after{background:linear-gradient(90deg,var(--accent),#5b21b6)}
+  </style>
+</head>
+<body>
+     <a href="https://wa.me/+2348104654863" target="_blank" id="whatsapp-button">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat with me" />
+  </a>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">AD</div>
+        <div>
+          <div class="title"><h2>Adedeji — Embedded & Software Engineer</h2></div>
+          <div class="subtitle">Frontend • Backend • Microembedded Systems • Automation • IoT</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul id="nav" class="nav-links">
+          <li><a href="#home" data-target="home" class="active">Home</a></li>
+          <li><a href="#software" data-target="software">Software</a></li>
+          <li><a href="#embedded" data-target="embedded">Embedded</a></li>
+          <li><a href="#webdev" data-target="webdev">Web Dev</a></li>
+          <li><a href="#iot" data-target="iot">IoT</a></li>
+          <li><a href="#contact" data-target="contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">☰</div>
+      </nav>
+    </header>
+
+    <!-- HOME -->
+    <main id="home" class="content">
+      <div class="hero">
+        <div class="hero-card">
+          <h1>Designing software, firmware and connected systems.</h1>
+          <p>I build end-to-end solutions: from responsive frontends and scalable backends to low-level firmware and IoT platforms. I bridge the physical and digital with secure, maintainable systems.</p>
+
+          <div class="chips">
+            <span class="chip">React</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">Express</span>
+            <span class="chip">MongoDB</span>
+            <span class="chip">ESP32</span>
+            <span class="chip">MQTT</span>
+            <span class="chip">Automation</span>
+          </div>
+
+          <div style="margin-top:18px">
+            <a class="btn primary" href="#projects">See highlights</a>
+            <a class="btn" href="#contact" style="margin-left:10px">Hire me</a>
+          </div>
+        </div>
+
+        <aside class="profile">
+          <img src="deji.jpg" width="0" height="300" alt="Engineer at desk">
+          <h3 style="margin:12px 0 6px">Adedeji</h3>
+          <div class="subtitle">Full-stack & Embedded Engineer</div>
+
+          <div class="stats">
+            <div class="stat"><b>8+</b><span style="color:var(--muted);font-size:13px">Years</span></div>
+            <div class="stat"><b>40+</b><span style="color:var(--muted);font-size:13px">Projects</span></div>
+            <div class="stat"><b>10</b><span style="color:var(--muted);font-size:13px">Devices</span></div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <a class="btn" href="#contact">Contact</a>
+            <a class="btn" href="#webdev">Projects</a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Highlights / Projects -->
+      <section id="projects" style="margin-top:28px">
+        <h2 style="margin:0 0 12px">Highlights</h2>
+        <div class="projects">
+          <article class="project card">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2b4b8d3c2d3c4e5f6a7b8c9d0e1f2a3b" alt="Real-time dashboard">
+            <div class="meta">
+              <h4>Real-time Dashboard</h4>
+              <p>React dashboard for telemetry, charts and live device control.</p>
+            </div>
+          </article>
+
+          <article class="project card">
+            <img src="api.jpeg" alt="API server" height="500">
+            <div class="meta">
+              <h4>Scalable API</h4>
+              <p>Node.js + Express API with auth, rate-limiting and MongoDB persistence.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- SOFTWARE ENGINEERING -->
+    <section id="software" class="content">
+      <div class="section-hero">
+        <div style="flex:1">
+          <h2>Software Engineering</h2>
+          <p class="muted">Designing maintainable systems, architecting APIs and leading development processes.</p>
+
+          <div class="grid" style="margin-top:16px">
+            <div class="card">
+              <h3>Architecture & Design</h3>
+              <p>Microservices, domain-driven design, scalable data models and event-driven systems.</p>
+            </div>
+            <div class="card">
+              <h3>Testing & CI</h3>
+              <p>Unit/integration tests, automated pipelines (GitHub Actions), and deployment strategies.</p>
+            </div>
+            <div class="card">
+              <h3>Security Best Practices</h3>
+              <p>Secure coding, input validation, authentication/authorization and monitoring.</p>
+            </div>
+          </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d" alt="Software engineering" />
+      </div>
+    </section>
+
+    <!-- EMBEDDED -->
+    <section id="embedded" class="content">
+      <div class="section-hero">
+        <img src="embedded.jpeg" alt="Embedede"/>
+        <div style="flex:1">
+          <h2>Microembedded System Engineering</h2>
+          <p class="muted">Firmware development, sensor integration and real-time control.</p>
+
+          <div class="grid" style="margin-top:16px">
+            <div class="card">
+              <h3>Firmware & Drivers</h3>
+              <p>ESP32/ESP8266, STM32, interrupt-driven firmware and peripheral communication (I2C, SPI, UART).</p>
+            </div>
+            <div class="card">
+              <h3>Low-power Design</h3>
+              <p>Sleep modes, energy profiling and battery-backed systems for long-life devices.</p>
+            </div>
+            <div class="card">
+              <h3>Hardware Debugging</h3>
+              <p>Logic analyzers, serial tracing, and test harnesses for reproducible debugging.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WEB DEV -->
+    <section id="webdev" class="content">
+      <div class="section-hero">
+        <div style="flex:1">
+          <h2>Web Development</h2>
+          <p class="muted">Modern web apps using ReactJS for frontend and Node/Express with MongoDB on the backend.</p>
+
+          <div class="grid" style="margin-top:16px">
+            <div class="card">
+              <h3>Frontend</h3>
+              <p>React, component-driven UI, accessibility, performance and SPA architecture.</p>
+            </div>
+            <div class="card">
+              <h3>Backend</h3>
+              <p>REST & GraphQL APIs, authentication (JWT), and database modeling with MongoDB.</p>
+            </div>
+            <div class="card">
+              <h3>DevOps</h3>
+              <p>Containerization, CI/CD pipelines, monitoring and scalable deployment patterns.</p>
+            </div>
+          </div>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=0f1e2d3c4b5a6f7e8d9c0b1a2c3d4e5f" alt="Web development" />
+      </div>
+    </section>
+
+    <!-- IOT -->
+    <section id="iot" class="content">
+      <div class="section-hero">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1a2b3c4d5e6f7g8h9i0j" alt="IoT engineering" />
+        <div style="flex:1">
+          <h2>IoT Engineering</h2>
+          <p class="muted">MQTT, device provisioning, telemetry, secure OTA and cloud integrations for reliable IoT systems.</p>
+
+          <div class="grid" style="margin-top:16px">
+            <div class="card">
+              <h3>Connectivity</h3>
+              <p>MQTT, HTTP/REST, WebSocket and secure transport layers for device communication.</p>
+            </div>
+            <div class="card">
+              <h3>Device Management</h3>
+              <p>Provisioning, OTA updates, versioning and remote diagnostics.</p>
+            </div>
+            <div class="card">
+              <h3>Analytics</h3>
+              <p>Time-series storage, alerting and dashboards for operational visibility.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="content">
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <p style="color:var(--muted);margin-top:0">Want to work together? Send a message — I typically reply within 48 hours.</p>
+
+        <form id="contactForm" action="https://formspree.io/f/mwpnnpbv" method="POST">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <input type="text" name="subject" placeholder="Subject" />
+          <textarea name="message" rows="6" placeholder="Message" required></textarea>
+          <div style="display:flex;gap:12px;align-items:center">
+            <button type="submit" class="submit">Send message</button>
+            <div id="formStatus" style="color:var(--muted);font-weight:700"></div>
+          </div>
+        </form>
+
+        <div style="margin-top:14px;color:var(--muted);font-size:13px">Or email me at: <a href="mailto:youremail@example.com" style="color:inherit">dontechiel@gmail.com</a></div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="card" style="display:inline-block;padding:12px 18px">© <span id="year"></span> Adedeji — Portfolio</div>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">All right reserved.</div>
+    </footer>
+  </div>
+
+  <script>
+    // basic interactivity: hamburger, active nav link on scroll, Formspree handling
+    const nav = document.getElementById('nav');
+    const links = Array.from(document.querySelectorAll('#nav a'));
+    const sections = links.map(a => document.getElementById(a.dataset.target));
+    const hamburger = document.getElementById('hamburger');
+
+    function toggleMenu(){
+      nav.classList.toggle('open');
+      nav.classList.toggle('show');
+    }
+    hamburger?.addEventListener('click', () => {
+      toggleMenu();
+    });
+
+    // smooth highlight on scroll
+    const sectionTops = () => sections.map(s => s && s.getBoundingClientRect().top + window.scrollY - 120);
+
+    function onScroll(){
+      const scroll = window.scrollY + 160;
+      let current = links[0];
+      for(let i=0;i<sections.length;i++){
+        const s = sections[i]; if(!s) continue;
+        const top = s.offsetTop;
+        if(scroll >= top){ current = links[i]; }
+      }
+      links.forEach(l => l.classList.remove('active'));
+      current.classList.add('active');
+    }
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      onScroll();
+    });
+
+    // close mobile menu when a link is clicked
+    links.forEach(l => l.addEventListener('click', () => {
+      if(window.innerWidth < 720){ nav.classList.remove('show'); }
+    }));
+
+    // Formspree async submit
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    if(contactForm){
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formStatus.style.color = 'var(--muted)';
+        formStatus.textContent = 'Sending...';
+        try{
+          const res = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { 'Accept': 'application/json' }
+          });
+          if(res.ok){
+            formStatus.style.color = 'limegreen';
+            formStatus.textContent = 'Message sent — thanks!';
+            contactForm.reset();
+          } else {
+            const data = await res.json();
+            formStatus.style.color = 'tomato';
+            formStatus.textContent = data?.error || 'Failed to send — try again.';
+          }
+        } catch(err){
+          formStatus.style.color = 'tomato';
+          formStatus.textContent = 'Network error — please try later.';
+        }
+      });
+    }
+  </script>
+   <style>
+    /* Floating WhatsApp button fixed at bottom-right */
+    #whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 70px;
+      height: 70px;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    #whatsapp-button img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+
+    #whatsapp-button img:hover {
+      transform: scale(1.15);
+    }
+  </style>
+</body>
+</html>
